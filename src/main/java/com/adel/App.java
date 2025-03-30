@@ -10,8 +10,8 @@ import java.util.stream.IntStream;
  */
 public class App {
     public static void main(String[] args) {
-        final int[] intA = IntStream.range(0, 1000).toArray();
-        final int[] intB = IntStream.range(100, 2000).toArray();
+        final int[] intA = IntStream.range(0, 5_000_000).toArray();
+        final int[] intB = IntStream.range(0, 5_000_000).toArray();
         final int[] res = new int[intA.length];
 
         {
@@ -30,7 +30,6 @@ public class App {
                     res[i] = intA[i] + intB[i];
                 }
             };
-
             final Range range = Range.create(res.length);
             kernel.execute(range);
             System.out.println("Aparapi: " + (System.currentTimeMillis() - time));
